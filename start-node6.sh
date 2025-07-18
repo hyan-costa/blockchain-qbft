@@ -8,13 +8,10 @@ until [ -f "$ENODE_FILE" ]; do
   sleep 2
 done
 
-RAW_ENODE=$(cat "$ENODE_FILE")
-# Substituir o IP 127.0.0.1 pelo IP real do container
-# ENODE=$(echo "$RAW_ENODE" | sed 's/@127\.0\.0\.1:/@172.25.0.10:/')
+ENODE=$(cat "$ENODE_FILE")
 
-echo "🧩 ENODE corrigido: $ENODE"
+echo "ENODE corrigido: $ENODE"
 
-# Rodar o Besu com o enode do nó 1 como bootnode
 exec besu \
   --data-path=/app/config/Node-6/data \
   --genesis-file=/app/config/genesis.json \
